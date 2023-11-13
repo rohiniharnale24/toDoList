@@ -1,0 +1,95 @@
+<form [formGroup]="toDoForm">
+  <div mat-dialog-content class="content">
+    <!-- number -->
+    <div>
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+      </ng-container>
+    </div>
+    <!-- title -->
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="Title"
+          placeholder="Title"
+        />
+      </mat-form-field>
+    </div>
+    <!-- Assigned Date -->
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Assigned Date</mat-label>
+        <input matInput [matDatepicker]="db1" formControlName="AssignDate" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="db1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #db1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <!-- Due Date -->
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Due Date</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="DueDate" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <!-- status -->
+    <div>
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <!-- //math select is the input for select -->
+        <mat-select formControlName="status">
+          <mat-option *ngFor="let status of statusArray" [value]="status.value">
+            {{ status.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- button -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="onSaveData()"
+        class="mx-2"
+        *ngIf="!updateItemDataFromTable"
+      >
+        Save
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="onUpdateData()"
+        class="mx-2"
+        *ngIf="updateItemDataFromTable"
+      >
+        Update
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        [mat-dialog-close]="false"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</form>
+
+<!-- //mat-dialog-close]="false >> here we rae passing the false value means if user
+didnt put data inside the form it must be close , but on save we are passing
+true to close means user entering data inside the dialogue and we must have to
+upadte the form -->
