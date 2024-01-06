@@ -21,9 +21,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialoguePopUpComponent } from './dialogue-pop-up/dialogue-pop-up.component';
 import { TableComponent } from './table/table.component';
+import { StaticComponent } from './static/static.component';
 
 @NgModule({
-  declarations: [AppComponent, DialoguePopUpComponent, TableComponent],
+  declarations: [AppComponent, DialoguePopUpComponent, TableComponent, StaticComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
